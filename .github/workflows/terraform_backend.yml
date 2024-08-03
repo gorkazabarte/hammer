@@ -1,0 +1,32 @@
+name: Create Terraform Backend
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Backend creation environment'
+        required: true
+        type: choice
+        default: dev
+        options:
+          - dev
+          - stg
+          - prd
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  create-terraform-backend:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: 'arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github'
+          aws-region: 'us-west-2'
+      - name: Run Backend creation script
+        run: .github/scripts/create_tf_bucket.sh ${{ inputs.environment }}
+        env:
+          s3_bucket: ${{ vars.ENVIRONMENT }}-hammer-backend
