@@ -1,12 +1,12 @@
 FROM python:3.12-alpine3.20
 
-COPY requirements.txt /opt/app/
+COPY requirements.txt /app/
 
-WORKDIR /opt/app/
+WORKDIR /app/
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-COPY source /opt/app/
+COPY source /app/
 
-CMD ["python", "main.py"]
+CMD ["uvicorn", "app:app",  "--host", "0.0.0.0", "--port", "80"]
 
