@@ -1,6 +1,5 @@
-"""
-Hammer Application main file
-"""
+from yfinance.collect import get_sp500_tickers
 
-if __name__ == '__main__':
-    print('Hammer Financial Application')
+if __name__ == '__main__': 
+    print(get_sp500_tickers())
+

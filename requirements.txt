@@ -1,5 +1,6 @@
 numpy==2.2.4
-pandas
+pandas==2.2.3
 pylint==3.3.6
+pytest==8.3.5
 requests==2.32.3
 yfinance==0.2.55
