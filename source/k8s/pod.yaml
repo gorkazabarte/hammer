@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hammer
+  labels:
+    tier: backend
+spec:
+  containers:
+  - name: hammer-pod
+    image: gorkazabarte/hammer:1.1.0
+    ports:
+    - containerPort: 80
+  tolerations: 
+    - key: "node-role.kubernetes.io/control-plane"
+      operator: "Exists"
+      effect: "NoSchedule"
