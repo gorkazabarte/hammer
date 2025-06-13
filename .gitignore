@@ -6,3 +6,8 @@
 
 # Visual Studio Code
 **/.vscode/*
+
+# Nodejs
+**/node_modules/*
+**/package-lock.json
+
