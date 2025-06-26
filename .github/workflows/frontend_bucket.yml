@@ -27,6 +27,6 @@ jobs:
           role-to-assume: 'arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github'
           aws-region: 'us-west-2'
       - name: Run Backend creation script
-        run: .github/scripts/create_frontend_bucket.sh ${{ inputs.environment }}
+        run: .github/scripts/create_frontend_bucket.sh
         env:
           s3_bucket: ${{ vars.ENVIRONMENT }}-hammer-frontend
