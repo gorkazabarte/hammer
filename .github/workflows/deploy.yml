@@ -29,13 +29,14 @@ jobs:
         with:
           node-version: 22
       - name: Build Frontend
-        working-directory: frontend
+        working-directory: source/frontend
         run: |
           npm install
           npm install react-responsive-carousel
           npm run build
       - name: Upload Frontend to S3
+        working-directory: source/frontend
         run: |
-          aws s3 sync frontend/dist "s3://${{ github.environment }}-frontend" --delete
+          aws s3 sync ./dist "s3://${{ github.environment }}-frontend" --delete
         env:
           AWS_DEFAULT_REGION: 'us-west-2'
