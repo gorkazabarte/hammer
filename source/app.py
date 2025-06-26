@@ -9,9 +9,8 @@ app = FastAPI()
 def get_root():
     """This is the main get method"""
 
-    with open('./company/amd.json', 'r', encoding='utf-8') as file:
+    with open('backend/amd.json', 'r', encoding='utf-8') as file:
         data = load(file)
     return {
-            "Hola": "Dima B, here is the server up and running :D",
-            "Next": f"Stupid things of my company {data}"
+            "Hola": f"{data}"
             }
