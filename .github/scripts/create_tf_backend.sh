@@ -9,7 +9,7 @@ else
   aws s3api create-bucket \
     --bucket "${s3_bucket}" \
     --region "us-west-2" \
-    --create-bucket-configuration LocationConstraint="${aws_region}"
+    --create-bucket-configuration LocationConstraint="us-west-2"
   fi
 echo "[INFO] Bucket created: ${s3_bucket}"
 

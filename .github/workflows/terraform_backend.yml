@@ -25,7 +25,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: 'arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github'
-          aws-region: '${{ secrets.AWS_REGION }}'
+          aws-region: 'us-west-2'
       - name: Run Backend creation script
         run: .github/scripts/create_backend.sh ${{ inputs.environment }}
         env:
