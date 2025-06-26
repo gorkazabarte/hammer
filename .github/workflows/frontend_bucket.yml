@@ -1,9 +1,9 @@
-name: Create Terraform Backend
+name: Create Frontend Bucket
 on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Backend creation environment'
+        description: 'Frontend creation bucket'
         required: true
         type: choice
         default: dev
@@ -17,6 +17,7 @@ permissions:
 jobs:
   create-terraform-backend:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -26,6 +27,6 @@ jobs:
           role-to-assume: 'arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github'
           aws-region: 'us-west-2'
       - name: Run Backend creation script
-        run: .github/scripts/create_tf_bucket.sh
+        run: .github/scripts/create_frontend_bucket.sh ${{ inputs.environment }}
         env:
-          s3_bucket: ${{ vars.ENVIRONMENT }}-hammer-backend
+          s3_bucket: ${{ vars.ENVIRONMENT }}-hammer-frontend

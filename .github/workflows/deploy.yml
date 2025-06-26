@@ -1,7 +1,16 @@
 name: Deploy web application
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment'
+        required: true
+        type: choice
+        default: dev
+        options:
+          - dev
+          - stg
+          - prd
 permissions:
   id-token: write
   contents: read
@@ -37,6 +46,6 @@ jobs:
       - name: Upload Frontend to S3
         working-directory: source/frontend
         run: |
-          aws s3 sync ./dist "s3://${{ github.environment }}-frontend" --delete
+          aws s3 sync ./dist "s3://${{ vars.ENVIRONMENT }}-hammer-frontend" --delete
         env:
           AWS_DEFAULT_REGION: 'us-west-2'
