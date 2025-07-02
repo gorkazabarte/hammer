@@ -1,5 +1,5 @@
 locals {
-  domain_prefix = var.environment == "prd" ? var.app_name : "${var.environment_prefix}.${var.app_name}"
+  domain = "${var.environment}" == "prd" ? "${var.app_name}.com" : "${var.environment}.${var.app_name}.com"
 }
 
 module "route53" {
@@ -7,8 +7,8 @@ module "route53" {
   version = "~> 5.0"
 
   zones = {
-    "${local.domain_prefix}.com" = {
-      comment = "${local.domain_prefix}.com"
+    "${local.domain}" = {
+      comment = "${local.domain}"
     }
   }
 }

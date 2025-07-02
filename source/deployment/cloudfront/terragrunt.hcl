@@ -1,3 +1,10 @@
+dependency "acm" {
+  config_path = "../acm"
+  mock_outputs = {
+    acm_certificate_arn = "tmp_acm_certificate_arn"
+  }
+}
+
 locals {
   app_name    = get_env("APP_NAME", "gzabarte")
   aws_region  = get_env("AWS_REGION", "us-west-2")
@@ -9,8 +16,10 @@ locals {
 }
 
 inputs = {
-  app_name = local.app_name
-  tags     = local.common_tags
+  acm_arn     = dependency.acm.outputs.acm_certificate_arn
+  app_name    = local.app_name
+  aws_region  = local.aws_region
+  environment = local.environment
 }
 
 remote_state {
