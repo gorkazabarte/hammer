@@ -1,5 +1,5 @@
 locals {
-  app_name    = get_env("APP_NAME", "hammer")
+  app_name    = get_env("APP_NAME", "gzabarte")
   aws_region  = get_env("AWS_REGION", "us-west-2")
   backend_bucket = get_env("TF_BUCKET")
   common_tags = {
