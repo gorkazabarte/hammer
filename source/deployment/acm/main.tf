@@ -1,20 +1,18 @@
+locals {
+  domain = "${var.environment}" == "prd" ? "${var.app_name}" : "${var.environment}.${var.app_name}"
+}
+
 module "acm" {
   source  = "terraform-aws-modules/acm/aws"
-  version = "~> 6.0"
+  version = "~> 4.0"
 
-  domain_name  = "${var.environment_prefix}-${var.app_name}.com"
-  zone_id      = "Z2ES7B9AZ6SHAE"
-
-  validation_method = "DNS"
-
+  domain_name  = "${local.domain}.com"
+  zone_id      = var.zone_id["${local.domain}.com"]
+  region       = "us-east-1"
   subject_alternative_names = [
-    "*.my-domain.com",
-    "app.sub.my-domain.com",
+    "${local.domain}.com",
+    "*.${local.domain}.com",
   ]
-
+  validation_method = "DNS"
   wait_for_validation = true
-
-  tags = {
-    Name = "my-domain.com"
-  }
 }
