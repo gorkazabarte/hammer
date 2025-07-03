@@ -3,7 +3,7 @@ locals {
 }
 
 module "acm" {
-  source  = "terraform-aws-modules/acm/aws?ref=6.0.0"
+  source  = "terraform-aws-modules/acm/aws?ref=v6.0.0"
   version = "~> 5.0"
 
   domain_name  = "${local.domain}.com"
