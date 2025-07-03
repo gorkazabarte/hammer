@@ -4,7 +4,7 @@ locals {
 
 module "acm" {
   source  = "terraform-aws-modules/acm/aws"
-  version = "~> 4.0"
+  version = "~> 6.0"
 
   domain_name  = "${local.domain}.com"
   zone_id      = var.zone_id["${local.domain}.com"]
