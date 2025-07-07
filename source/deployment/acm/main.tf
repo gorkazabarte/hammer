@@ -1,5 +1,5 @@
 locals {
-  domain = "${var.environment}" == "prd" ? "${var.app_name}.com" : "${var.environment}.${var.app_name}.com"
+  domain = "${var.app_name}.com"
 }
 
 module "acm" {
@@ -14,5 +14,5 @@ module "acm" {
     "*.${local.domain}",
   ]
   validation_method   = "DNS"
-  wait_for_validation = true
+  wait_for_validation = false
 }

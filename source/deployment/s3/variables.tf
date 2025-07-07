@@ -1,18 +1,6 @@
-variable "acm_arn" {
-  default     = ""
-  description = "The ARN of the ACM certificate"
-  type        = string
-}
-
 variable "app_name" {
   default     = "gzabarte"
   description = "The name of the application for which the Route 53 zone is being created."
-  type        = string
-}
-
-variable "aws_region" {
-  default     = "us-west-2"
-  description = "AWS region"
   type        = string
 }
 
@@ -22,8 +10,7 @@ variable "environment" {
   type        = string
 }
 
-variable "zone_id" {
-  default     = {}
-  description = "The id of the Route53 Hosted Zone"
-  type        = map(string)
+variable "cloudfront_distribution_arn" {
+  description = "The ARNs of the CloudFront distribution"
+  type        = string
 }

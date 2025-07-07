@@ -1,14 +1,7 @@
-dependency "acm" {
-  config_path = "../acm"
+dependency "cloudfront" {
+  config_path = "../cloudfront"
   mock_outputs = {
-    acm_certificate_arn = "tmp_acm_certificate_arn"
-  }
-}
-
-dependency "route53" {
-  config_path = "../route53"
-  mock_outputs = {
-    zone_id  = { "tmp_zone_id_key": "tmp_zone_id_value" }
+    cloudfront_origin_access_identity_ids = "tmp_cloudfront_origin_access_identity_ids"
   }
 }
 
@@ -23,11 +16,9 @@ locals {
 }
 
 inputs = {
-  acm_arn     = dependency.acm.outputs.acm_certificate_arn
-  app_name    = local.app_name
-  aws_region  = local.aws_region
-  environment = local.environment
-  zone_id     = dependency.route53.outputs.zone_id
+  app_name                    = local.app_name
+  environment                 = local.environment
+  cloudfront_distribution_arn = dependency.cloudfront.outputs.cloudfront_distribution_arn
 }
 
 remote_state {
@@ -39,7 +30,7 @@ remote_state {
   config = {
     bucket              = local.backend_bucket
     encrypt             = true
-    key                 = "${local.app_name}/${local.environment}/cloudfront/terraform.tfstate"
+    key                 = "${local.app_name}/${local.environment}/s3/terraform.tfstate"
     region              = local.aws_region
     s3_bucket_tags      = merge(local.common_tags, { "Role" = "${local.app_name}/tfstate" })
   }

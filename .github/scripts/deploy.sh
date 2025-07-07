@@ -15,3 +15,7 @@ terragrunt apply --all --non-interactive -no-color
 echo "[INFO] Deploying CloudFront for application: ${APP_NAME} in environment: ${ENVIRONMENT}"
 cd ../cloudfront || exit
 terragrunt apply --all --non-interactive -no-color
+
+echo "[INFO] Deploying S3 for application: ${APP_NAME} in environment: ${ENVIRONMENT}"
+cd ../s3 || exit
+terragrunt apply --all --non-interactive -no-color

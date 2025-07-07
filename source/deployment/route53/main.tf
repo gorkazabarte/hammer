@@ -1,5 +1,5 @@
 locals {
-  domain = "${var.environment}" == "prd" ? "${var.app_name}.com" : "${var.environment}.${var.app_name}.com"
+  domain = "${var.app_name}.com"
 }
 
 module "route53" {

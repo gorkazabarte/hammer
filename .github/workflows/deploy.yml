@@ -20,7 +20,7 @@ permissions:
   id-token: write
   contents: read
 jobs:
-  bucket-creation:
+  terraform-bucket-creation:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
@@ -34,7 +34,7 @@ jobs:
       - name: Run Backend creation script
         run: .github/scripts/create_frontend_bucket.sh ${{ inputs.environment }}
         env:
-          s3_bucket: ${{ inputs.environment }}-${{ inputs.app_name }}-frontend
+          s3_bucket: ${{ inputs.environment }}-${{ inputs.app_name }}-tf
   deploy:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
@@ -58,7 +58,7 @@ jobs:
         env:
           APP_NAME: ${{ inputs.app_name }}
           ENVIRONMENT: ${{ inputs.environment }}
-          TF_BUCKET: ${{ inputs.environment }}-${{ inputs.app_name }}-frontend
+          TF_BUCKET: ${{ inputs.environment }}-${{ inputs.app_name }}-tf
       - uses: actions/setup-node@v4
         with:
           node-version: 22
