@@ -23,7 +23,7 @@ variable "environment" {
 }
 
 variable "zone_id" {
-  default     = {}
+  default     = ""
   description = "The id of the Route53 Hosted Zone"
-  type        = map(string)
+  type        = string
 }

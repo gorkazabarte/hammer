@@ -70,7 +70,7 @@ module "cloudfront" {
 
 resource "aws_route53_record" "record_1" {
   depends_on = [module.cloudfront]
-  zone_id    = var.zone_id["${local.domain}"]
+  zone_id    = var.zone_id
   name       = local.domain
   type       = "A"
   alias {
@@ -82,7 +82,7 @@ resource "aws_route53_record" "record_1" {
 
 resource "aws_route53_record" "record_2" {
   depends_on = [module.cloudfront]
-  zone_id    = var.zone_id["${local.domain}"]
+  zone_id    = var.zone_id
   name       = "www.${local.domain}"
   type       = "A"
   alias {
