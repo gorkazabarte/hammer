@@ -4,5 +4,5 @@ locals {
 
 data "aws_route53_zone" "selected" {
   name         = "${local.domain}"
-  private_zone = true
+  private_zone = false
 }
