@@ -41,7 +41,7 @@ generate "provider" {
   contents = <<EOF
   data "aws_caller_identity" "main" {}
   provider "aws" {
-    region = "${local.aws_region}"
+    region = "us-east-1"
   }
   terraform {
     required_version = ">= 1.10"

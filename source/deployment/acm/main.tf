@@ -3,7 +3,6 @@ locals {
 }
 
 data "aws_acm_certificate" "issued" {
-  domain   = "${local.domain}"
-  region   = "us-east-1"
+  domain   = local.domain
   statuses = ["ISSUED"]
 }

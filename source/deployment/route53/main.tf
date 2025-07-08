@@ -3,6 +3,6 @@ locals {
 }
 
 data "aws_route53_zone" "selected" {
-  name         = "${local.domain}"
+  name         = local.domain
   private_zone = false
 }
