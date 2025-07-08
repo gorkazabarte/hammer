@@ -18,10 +18,7 @@ locals {
 
 inputs = {
   app_name    = local.app_name
-  environment = local.environment
   tags        = local.common_tags
-  zone_arn    = dependency.route53.outputs.zone_arn
-  zone_id     = dependency.route53.outputs.zone_id
 }
 
 remote_state {

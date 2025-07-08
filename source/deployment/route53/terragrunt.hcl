@@ -10,8 +10,6 @@ locals {
 
 inputs = {
   app_name    = local.app_name
-  environment = local.environment
-  tags        = local.common_tags
 }
 
 remote_state {
